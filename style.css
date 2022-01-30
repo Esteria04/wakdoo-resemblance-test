@@ -239,7 +239,7 @@ progress::-moz-progress-bar {
 }
 footer {
   position:absolute;
-  bottom: 4px;
+  top: 130%;
   left: 10px;
   text-align: left;
 }
