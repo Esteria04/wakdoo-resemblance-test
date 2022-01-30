@@ -1,0 +1,245 @@
+body {
+    font-family: sans-serif;
+    background-color: #eeeeee;
+    width: 100%;
+    height:100%;
+    text-align: center;
+  }
+  #upload-icon {
+    width: 100px;
+  }
+  .icon-container {
+      position: relative;
+      top: 30px;
+      width: 100px;
+      display: inline-block;
+  }
+  .file-upload {
+    background-color: #f5f5f5;
+    margin: 0 auto;
+    height: auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 50px;
+    width: 300px;
+    padding-right: 50px;
+    border-right-width: 50px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  .file-upload-content {
+    display: none;
+    text-align: center;
+  }
+  
+  .file-upload-input {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+    border: 1px dashed #000000;
+    box-sizing: border-box;
+    border-radius: 30px;
+    
+    left: 0px;
+
+  }
+  
+  .image-upload-wrap {
+    position: relative;
+    background-color: #ffffff;
+    width: 300px;
+    height: 300px;
+    border: 1px dashed #000000;
+    box-sizing: border-box;
+    border-radius: 30px;
+    display: inline-block;
+    justify-content: center;
+}
+  
+  .image-dropping,
+  .image-upload-wrap:hover {
+    background-color: #586A86;
+    border: 1px dashed #ffffff;
+    box-sizing: border-box;
+    border-radius: 30px;
+  }
+  
+  .image-title-wrap {
+    padding: 0 15px 15px 15px;
+    color: #222;
+  }
+  
+  .drag-text {
+    position: relative;
+    top: 50px;
+    text-align: center;
+    height: 50px;
+    width: 200px;
+    display:inline-block;
+}
+
+.drag-text h3 {
+    font-weight: 100;
+    text-transform: uppercase;
+    color: #222222;
+    padding: 60px 0;
+    
+    height: 50px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    width: 200px;
+
+  }
+  
+  .file-upload-image {
+    max-height: 200px;
+    max-width: 200px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .remove-image {
+    width: 200px;
+    margin: 0;
+    color: #fff;
+    background: #cd4535;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    border-bottom: 4px solid #b02818;
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  
+  .remove-image:hover {
+    background: #c13b2a;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+  }
+  
+  .remove-image:active {
+    border: 0;
+    transition: all .2s ease;
+  }
+
+  .container {
+    padding-top:40px;
+    width:300px;
+    margin:auto;
+    text-align:center;
+    vertical-align:middle;
+  }
+
+button {
+    border-radius: 10px;
+    border-left-width: 0px;
+    border-right-width: 0px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+}
+
+
+progress[value]::-webkit-progress-bar {
+    background-color: #C4C4C4;
+    border-radius: 15px;
+  }
+  
+  progress {  
+    background-color: #C4C4C4;
+    border-radius: 15px;
+}  
+
+progress::-webkit-progress-bar {  
+  background-color: #C4C4C4;
+  border-radius: 15px;
+  position: relative;
+
+}  
+
+#notWak::-webkit-progress-value {  
+  position: relative;
+  background-color: #FF9A9A;
+  border-radius: 15px;
+}  
+#Wak::-webkit-progress-value {  
+  position: relative;
+  background-color: #6777CC;
+  border-radius: 15px;
+}  
+
+progress::-moz-progress-bar {  
+  background-color: #C4C4C4;
+  border-radius: 15px;
+}  
+
+#notWak-class {
+  display: inline-block;
+  position: relative;
+  margin: 0px;
+  width: 70px;
+  right: 26px;
+
+
+}
+#notWak-class-percent {
+  display: inline-block;
+
+  right: 15px;
+
+  position: relative;
+  width: 40px;
+  margin: 0px;
+}
+#wak-class {
+  display: inline-block;
+  position: relative;
+  margin: 0px;
+  width: 40px;
+  right: 10px;
+}
+#wak-class-percent {
+  position: relative;
+  display: inline-block;
+  
+  margin: 0px;
+  width: 40px;
+}
+
+.wak-container {
+  display: inline-block;
+  justify-content: center;
+  width: 300px;
+}
+
+.notWak-container {
+  display: inline-block;
+  justify-content: center;
+  width: 300px;
+}
+
+.wakdootest {
+  position: relative;
+  top: 300px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+footer {
+  position:absolute;
+  bottom: 4px;
+  left: 10px;
+  text-align: left;
+}
