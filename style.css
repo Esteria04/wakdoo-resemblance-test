@@ -232,14 +232,14 @@ progress::-moz-progress-bar {
 
 .wakdootest {
   position: relative;
-  top: 300px;
+  top: 100px;
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
-footer {
-  position:absolute;
-  top: 130%;
-  left: 10px;
-  text-align: left;
+header {
+  position: absolute;
+  right: 20px;
+  text-align: right;
+  top:20px;
 }
