@@ -1,1 +1,1 @@
-# wakdoo-resemblance-test
+# 왁두 닮은꼴 테스트
