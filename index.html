@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>왁두상 테스트</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+  </head>
+  <body>
+  <header>
+    <h6>made by 에스테리아</h6>
+    <h6>문의: dev.esteria04@gmail.com</h6>
+  </header>
+    <h1 style="position:absolute;left:20px;top:20px;">왁두상 테스트</h1>
+    <div class="wakdootest">
+      <h2>왁두상 테스트</h2>
+      <h4>얼굴로 보는 인공지능 왁두상 테스트</h4>
+      <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+      <div class="file-upload">
+        <div class="image-upload-wrap">
+          <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*"/>
+          <div class="container">
+            <div class="icon-container">
+              <svg id="upload-icon" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83.23 90.04"><defs><style>.cls-1{fill:none;stroke:#1d1d1b;stroke-miterlimit:10;}</style></defs><path class="cls-1" d="M77.19,34.12A13.92,13.92,0,0,1,91.11,48V82.43A13.92,13.92,0,0,1,77.19,96.35H22.81A13.92,13.92,0,0,1,8.89,82.43V48A13.92,13.92,0,0,1,22.81,34.12" transform="translate(-8.39 -6.81)"/><path class="cls-1" d="M69.53,24.28" transform="translate(-8.39 -6.81)"/><path class="cls-1" d="M50,10.33" transform="translate(-8.39 -6.81)"/><polyline class="cls-1" points="24.93 17.16 41.38 0.71 58.3 17.63"/><line class="cls-1" x1="41.38" y1="0.71" x2="41.38" y2="64.97"/></svg>
+            </div>
+            <div class="drag-text">
+              <h3>얼굴 사진을 올려놓거나 눌러서 업로드하세요!</h3>
+            </div>
+          </div>           
+        </div>
+        <div class="file-upload-content">
+          <img class="file-upload-image" id="face-image" src="#" alt="your image" />
+          <p class="result-message"></p>
+          <div id="label-container" style=padding-bottom:10px;"></div>
+          <div class="image-title-wrap">
+            <button type="button" onclick="removeUpload()" class="remove-image"><span class="image-title">Uploaded Image</span></button>
+          </div>
+        </div>
+      </div>
+      <h4 style="margin-bottom: 500px;">*테스트에 이용된 사진은 절대 저장되지 않습니다*</h4>
+    </div>
+
+
+
+
+
+    <div class="model-container">
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+        <script src="script.js"></script>
+        <script type="text/javascript">
+            // More API functions here:
+            // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+        
+            // the link to your model provided by Teachable Machine export panel
+            const URL = "https://teachablemachine.withgoogle.com/models/bkS2VqvNn/";
+        
+            let model, labelContainer, maxPredictions;
+        
+            // Load the image model and setup the webcam
+            async function init() {
+                const modelURL = URL + "model.json";
+                const metadataURL = URL + "metadata.json";
+            
+                // load the model and metadata
+                // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+                // or files from your local hard drive
+                // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+                model = await tmImage.load(modelURL, metadataURL);
+                maxPredictions = model.getTotalClasses();
+                // append elements to the DOM
+                labelContainer = document.getElementById("label-container");
+            }
+            async function predict() {
+                // predict can take in an image, video or canvas html element
+                let image = document.getElementById("face-image");
+                const prediction = await model.predict(image, false);
+                let resultMessage;
+                prediction.sort((a,b) => parseFloat(b.probability)-parseFloat(a.probability));
+                f_probability = parseFloat(prediction[i].probability)
+                switch (prediction[0].className) {
+                  case "왁두":
+                    resultMessage = "당신은 왁두와 닮았습니다 ㅋㅋ";
+                    if (f_probability == 1) {
+                      resultMessage = "이건 왁두입니다!"
+                    }
+                    break
+                  case "왁두아님":
+                    resultMessage = "당신은 왁두와 닮지 않았습니다 ㅠㅠ";
+                    break
+                  }
+                    document.getElementsByClassName("result-message")[0].innerHTML = resultMessage;
+                for (let i = 0; i < maxPredictions; i++) {
+                    let percentage = prediction[i].probability.toFixed(2);
+                    let id;
+                    if (percentage[0]==1) {
+                      percentage = "00100";
+                    }
+                    else if (percentage[2]==0) {
+                      percentage = percentage.slice(1);
+                    }
+                    percentage = percentage.slice(2) + '%'
+                    if (prediction[i].className == "왁두") {
+                      id="Wak";
+            
+                    }
+                    if (prediction[i].className =="왁두아님") {
+                      id = "notWak";
+                    }
+                    let resultBarElement = document.createElement("progress");
+                    resultBarElement.setAttribute("id", `${id}`);
+                    resultBarElement.setAttribute("min", "0");
+                    resultBarElement.setAttribute("max", "100");
+                    resultBarElement.setAttribute("value", percentage.slice(0,percentage.length-1));
+                    resultBarElement.setAttribute("style","position:relative;");
+                    
+                    
+                    let resultName = prediction[i].className;
+                    if (resultName == "왁두") {
+                      resultName = "wak-class";
+                    }
+                    else {
+                      resultName = "notWak-class";
+                    }
+                    let resultNameElement = document.createElement("p");
+                    resultNameElement.setAttribute("id", `${resultName}`);
+                    let resultPercentageElement = document.createElement("p");
+                    resultPercentageElement.setAttribute("id", `${resultName+"-percent"}`);
+                    if (resultName == "wak-class") {
+                      let divforwak = document.createElement("div");
+                      divforwak.setAttribute("class", "wak-container");
+                      labelContainer.appendChild(divforwak);
+                      divforwak.appendChild(resultNameElement);
+                      divforwak.appendChild(resultBarElement);
+                      divforwak.appendChild(resultPercentageElement);
+                    }
+                    if (resultName == "notWak-class") {
+                      resultBarElement.setAttribute("style", "position: relative;right:15px;")
+                      let divfornotwak = document.createElement("div");
+                      divfornotwak.setAttribute("class", "notWak-container");
+                      labelContainer.appendChild(divfornotwak);
+                      divfornotwak.appendChild(resultNameElement);
+                      divfornotwak.appendChild(resultBarElement);
+                      divfornotwak.appendChild(resultPercentageElement);
+                    }
+                    document.getElementById(resultName).innerHTML = prediction[i].className;
+                    document.getElementById(resultName+"-percent").innerHTML = percentage;
+                }
+            }
+        </script>
+    </div>
+</body>
+<!-- Copyright (c) 2022 by Aaron Vanston (https://codepen.io/aaronvanston/pen/yNYOXR)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ -->
+</html>
