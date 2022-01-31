@@ -79,7 +79,7 @@
                 const prediction = await model.predict(image, false);
                 let resultMessage;
                 prediction.sort((a,b) => parseFloat(b.probability)-parseFloat(a.probability));
-                f_probability = parseFloat(prediction[i].probability)
+                f_probability = parseFloat(prediction[0].probability)
                 switch (prediction[0].className) {
                   case "왁두":
                     resultMessage = "당신은 왁두와 닮았습니다 ㅋㅋ";
